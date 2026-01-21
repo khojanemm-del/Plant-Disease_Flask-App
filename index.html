@@ -7,11 +7,12 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #f9f9f9;
+            background-color: #ffea00ff;
+            background: linear-gradient(to bottom, yellow 50%, blue 120%);
             text-align: center;
         }
         h1 {
-            color: #2c3e50;
+            color: #16005fff;
         }
         form {
             margin-top: 20px;
@@ -20,14 +21,14 @@
             margin: 10px;
         }
         button {
-            background-color: #27ae60;
-            color: white;
+            background-color: #f9f9ffff;
+            color: green;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #219150;
+            background-color: #2e00faff;
         }
         #result {
             margin-top: 30px;
@@ -35,9 +36,19 @@
             color: #333;
         }
 </style>
+<style>
+    body {
+         border: 15px solid #04007dff;   /* Thicker blue border */
+    margin: 0;                    /* Remove default margins */
+    padding: 20px;                /* Space inside the border */
+    min-height: 100vh;            /* Ensure border covers full height of screen */
+    box-sizing: border-box; 
+    }
+</style>
+
 </head>
 <body>
-<h1>�� Plant Disease Classifier</h1>
+<h1>🌱 Plant Disease Classifier</h1>
 <p>Upload a leaf image to detect its health status.</p>
  
     <form id="uploadForm" enctype="multipart/form-data">
@@ -46,7 +57,17 @@
 </form>
  
     <div id="result"></div>
+
+    <!-- Vegetable emojis section -->
+<div id="veggie-emojis" style="margin-top:30px; font-size:24px;">
+🥔 🍅 🌽 🥕 🥦 🧄 🧅 🍆 🥒 🥬 🌶️ 🥗 🥜 🥝 🥭 🍠 🍄 🥜 🥑 🥜 🥥 🍎 🍏 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐
+🥝 🍍 🥭 🍒 🍑 🥥 🍈 🌱 🌿 ☘️ 🍀 🎍 🎋 🍃 🍂 🍁 🌵 🌴 🌳 🌲 🌾 🌼 🌻 🌷 🌹 🪴
+</div>
  
+  <footer style="margin-top:40px; color:#000000;">
+    🌹Built by Delano Collins • Plant Disease Classifier 🌲
+</footer>
+
     <script>
         const form = document.getElementById('uploadForm');
         const resultDiv = document.getElementById('result');
@@ -61,7 +82,9 @@
                 method: 'POST',
                 body: formData
             });
- 
+
+            <div id="result"></div>
+
             const data = await response.json();
             resultDiv.innerHTML = `<strong>Prediction:</strong> ${data.class} <br>
 <strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%`;
